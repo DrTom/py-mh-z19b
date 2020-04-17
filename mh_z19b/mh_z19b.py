@@ -47,6 +47,7 @@ class MHZ19B():
             read_start = ticks_us()
             bytes_avail = self.uart_bytes_available()
             if bytes_avail != 9:
+                self.uart.read(bytes_avail)
                 raise Exception("expect 9 bytes from uart, but {} available".format(bytes_avail))
             self.raw_readout = self.uart.read(9)
             read_end= ticks_us()
